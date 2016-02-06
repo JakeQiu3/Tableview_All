@@ -25,4 +25,5 @@
     TableContactGroup *contactGroup = [[TableContactGroup alloc] initWithGroupName:groupName groupDetail:groupDetail contacts:contacts];
     return contactGroup;
 }
+
 @end

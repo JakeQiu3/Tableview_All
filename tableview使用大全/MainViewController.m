@@ -62,7 +62,7 @@
 }
 
 - (void)setUI {
-    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
@@ -76,7 +76,7 @@
     TableContactGroup *tempGroup = _contactsArray[section];
     return tempGroup.contacts.count;
 }
-
+//分区索引
 - (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     NSMutableArray *indexArray = [[NSMutableArray alloc] init];
     for (TableContactGroup *tempGroup in _contactsArray) {
@@ -86,22 +86,26 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    2种cell：2个标示
     static NSString *indentfifer = @"woout";
     static NSString *switchIndentifer = @"switchIdentifier";
-
+//    缓存池取cell
     UITableViewCell *cell;
     if (0 == indexPath.row) {
         cell = [tableView dequeueReusableCellWithIdentifier:switchIndentifer];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:indentfifer];
     }
-
+//创建cell
     if (!cell) {
         if (0 == indexPath.row) {
             cell = [[UITableViewCell  alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:switchIndentifer];
-            UISwitch *switchView = [[UISwitch alloc] init];
+            UISwitch *switchView= [[UISwitch alloc]init];
+//            设置tag:获取对应indexPath,再获取cell
+            switchView.tag = indexPath.section +100;
             [switchView addTarget:self action:@selector(switchValueChange:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = switchView;
+            
         } else {
             cell = [[UITableViewCell  alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:indentfifer];
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -126,14 +130,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //获取选择的indexPath
     _selcetedIndex = indexPath;
     TableContactGroup *tempGroup = _contactsArray[indexPath.section];
     TableContact *tempContact = tempGroup.contacts[indexPath.row];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[tempContact getName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-//  给alert 创建一个textfield
+//  给alert创建一个textfield
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-//取得文本框
+// 取得文本框
     UITextField *textField= [alert textFieldAtIndex:0];
     textField.text=tempContact.phoneNumber; //设置文本框内容
     [alert show]; //显示窗口
@@ -161,6 +166,7 @@
     }
     return 40;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 45;
 }
@@ -168,6 +174,9 @@
     return 40;
 }
 
+//- (BOOL)prefersStatusBarHidden {
+//    return YES;
+//}
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
@@ -178,13 +187,18 @@
 
 //切换按钮的方法
 - (void)switchValueChange:(UISwitch *)switchView {
-    NSLog(@"切换按钮");
+    NSInteger section = switchView.tag - 100;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+//    获取到点击的cell
+    UITableViewCell *cell;
+    cell = (UITableViewCell *)[_tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"%p====切换按钮",cell);
 }
 
 //添加工具栏
 - (void)addToolbar {
     
-    _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
+    _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width,64)];
     [self.view addSubview:_toolBar];
 //   删除按钮
     UIBarButtonItem *removeBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(remove:)];
@@ -200,7 +214,7 @@
 }
 
 /*
- * 删除方法
+ * 删除方法:可编辑状态
  */
 - (void)remove:(UIBarButtonItem *)btnItem {
     _isInsert = NO;
@@ -208,7 +222,7 @@
 }
 
 /*
- * 添加方法
+ * 添加方法:可编辑状态
  */
 - (void)add:(UIBarButtonItem *)btnItem {
     _isInsert = YES;
@@ -262,16 +276,5 @@
      TableContactGroup *destinationGroup = _contactsArray[destinationIndexPath.section];
     [destinationGroup.contacts insertObject:tempContact atIndex:destinationIndexPath.row];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

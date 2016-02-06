@@ -13,9 +13,9 @@
 {
     UISearchBar *_searchBar;
     NSMutableArray *_contactsArray;//数据数组
-    NSMutableArray *_searchContact;//搜索数组
+    NSMutableArray *_searchContactArray;//搜索数组
     BOOL _isSearching;
-    
+    UILabel *label;//无搜索结果时展示
 }
 @end
 
@@ -29,8 +29,18 @@
     [super viewDidLoad];
     [self initData];//数据源
     [self addSearchBar];//添加到表头
+    [self creatResultLable];// 无搜索结果label
+    
 }
+- (void)creatResultLable {
+    label = [[UILabel alloc] init];
+    label.hidden = YES;
+    label.frame = CGRectMake(100, 200, 200, 30);
+    label.text = @"没有搜索到您要的结果";
+    label.textColor = [UIColor blackColor];
+    [self.view insertSubview:label belowSubview:self.tableView];
 
+}
 - (void)initData {
     _contactsArray = [[NSMutableArray alloc] init];
     TableContact *contact1 = [[TableContact alloc]initWithFirstName:@"cui" lastName:@"hha" phoneNumber:@"13788774362"];
@@ -50,7 +60,7 @@
     TableContact *contact9 = [[TableContact alloc]initWithFirstName:@"liu" lastName:@"erdsg" phoneNumber:@"137884774362"];
     TableContactGroup *group3 = [[TableContactGroup alloc] initWithGroupName:@"L" groupDetail:@"With names beginning with L" contacts:[NSMutableArray arrayWithObjects:contact6,contact7,contact8,contact9,nil]];
     [_contactsArray addObject:group3];
-
+    
 }
 
 - (void)addSearchBar {
@@ -58,7 +68,7 @@
     CGRect searchBarRect = CGRectMake(0, 20, self.view.bounds.size.width-10, 30);
     _searchBar = [[UISearchBar alloc] initWithFrame:searchBarRect];
     [_searchBar sizeToFit];//自适应
-    _searchBar.placeholder = @"Please input key word...";
+    _searchBar.placeholder = @"Please input key word";
     _searchBar.showsCancelButton = YES;
     _searchBar.delegate = self;
     [headerView addSubview:_searchBar];
@@ -73,7 +83,8 @@
     [searchBar resignFirstResponder];
     [self.tableView reloadData];
 }
-//输入搜索关键字
+
+//搜索关键字发生变化时
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText isEqualToString:@""]) {//若无输入时
         _isSearching = NO;
@@ -92,16 +103,22 @@
 //搜索的方法
 - (void)searchDataWithKeyWord:(NSString *)keyWord {
     _isSearching = YES;
-    _searchContact = [[NSMutableArray alloc] init];
+    _searchContactArray = [[NSMutableArray alloc] init];
     [_contactsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         TableContactGroup *tempGroup = obj;
         [tempGroup.contacts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             TableContact *tempContact = obj;
             if ([tempContact.firstName.uppercaseString containsString:keyWord.uppercaseString] || [tempContact.lastName.uppercaseString containsString:keyWord.uppercaseString]|| [tempContact.phoneNumber containsString:keyWord]) {
-                [_searchContact addObject:tempContact];
+                [_searchContactArray addObject:tempContact];
+              
             }
         }];
     }];
+    if (_searchContactArray.count) {
+        label.hidden = YES;
+    } else {
+        label.hidden = NO;
+    }
     [self.tableView reloadData];//刷新表格
 }
 
@@ -117,7 +134,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_isSearching) {
-        return _searchContact.count;
+        return _searchContactArray.count;
     }
     TableContactGroup *tempGroup = _contactsArray[section];
     return tempGroup.contacts.count;
@@ -135,7 +152,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableContact *tempContact = nil;
     if (_isSearching) {
-        tempContact = _searchContact[indexPath.row];
+        tempContact = _searchContactArray[indexPath.row];
     } else {
        TableContactGroup *tempGroup = _contactsArray[indexPath.section];
         tempContact = tempGroup.contacts[indexPath.row];
@@ -159,6 +176,7 @@
     TableContactGroup *tempGroup = _contactsArray[section];
     return tempGroup.groupName;
 }
+
 // 获取搜索还是直接点击cell 的数据
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_isSearching) {//获取搜索的,根据indexpath获取对应的数据

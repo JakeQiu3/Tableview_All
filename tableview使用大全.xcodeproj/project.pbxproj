@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7333131E1C658FA400D7A0A1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7333131D1C658FA400D7A0A1 /* ViewController.m */; };
 		7334AD081C30F678009DE444 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7334AD071C30F678009DE444 /* SearchTableViewController.m */; };
 		735195781C2CF33800327BD3 /* WeiboStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 735195771C2CF33800327BD3 /* WeiboStatus.m */; };
 		7351957B1C2CF65D00327BD3 /* StatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7351957A1C2CF65D00327BD3 /* StatusTableViewCell.m */; };
@@ -40,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7333131C1C658FA400D7A0A1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7333131D1C658FA400D7A0A1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7334AD061C30F678009DE444 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		7334AD071C30F678009DE444 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		735195761C2CF33800327BD3 /* WeiboStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboStatus.h; sourceTree = "<group>"; };
@@ -94,40 +97,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7334AD041C30CDEF009DE444 /* Test3 */ = {
+		7334AD041C30CDEF009DE444 /* tableView（UISearchBar 搜索常用） */ = {
 			isa = PBXGroup;
 			children = (
 				73DA9ACA1C2BEDD200591CE9 /* ContactTableViewController.h */,
 				73DA9ACB1C2BEDD200591CE9 /* ContactTableViewController.m */,
 			);
-			name = Test3;
+			name = "tableView（UISearchBar 搜索常用）";
 			sourceTree = "<group>";
 		};
-		7334AD051C30F652009DE444 /* Test4 */ = {
+		7334AD051C30F652009DE444 /* tableView（UISearchDisplayController 搜索） */ = {
 			isa = PBXGroup;
 			children = (
 				7334AD061C30F678009DE444 /* SearchTableViewController.h */,
 				7334AD071C30F678009DE444 /* SearchTableViewController.m */,
 			);
-			name = Test4;
-			sourceTree = "<group>";
-		};
-		735195741C2CF2F500327BD3 /* Controller test2 */ = {
-			isa = PBXGroup;
-			children = (
-				7351957C1C2D2B6500327BD3 /* StatusViewController.h */,
-				7351957D1C2D2B6500327BD3 /* StatusViewController.m */,
-			);
-			name = "Controller test2";
-			sourceTree = "<group>";
-		};
-		735195751C2CF2FD00327BD3 /* Model test2 */ = {
-			isa = PBXGroup;
-			children = (
-				735195761C2CF33800327BD3 /* WeiboStatus.h */,
-				735195771C2CF33800327BD3 /* WeiboStatus.m */,
-			);
-			name = "Model test2";
+			name = "tableView（UISearchDisplayController 搜索）";
 			sourceTree = "<group>";
 		};
 		735195831C2D2D8600327BD3 /* library */ = {
@@ -154,23 +139,30 @@
 			name = library;
 			sourceTree = "<group>";
 		};
-		735195A21C2D427500327BD3 /* Test1 */ = {
+		735195A21C2D427500327BD3 /* tableView(通讯录展示：编辑和删除排序) */ = {
 			isa = PBXGroup;
 			children = (
-				73DA9ACE1C2BEE2D00591CE9 /* Controller test1 */,
-				73DA9ACD1C2BEE2500591CE9 /* Model test1 */,
+				73DA9AD61C2BF8AF00591CE9 /* MainViewController.h */,
+				73DA9AD71C2BF8AF00591CE9 /* MainViewController.m */,
+				73DA9AD01C2BEE7800591CE9 /* TableContact.h */,
+				73DA9AD11C2BEE7800591CE9 /* TableContact.m */,
+				73DA9AD31C2BF13F00591CE9 /* TableContactGroup.h */,
+				73DA9AD41C2BF13F00591CE9 /* TableContactGroup.m */,
 			);
-			name = Test1;
+			name = "tableView(通讯录展示：编辑和删除排序)";
 			sourceTree = "<group>";
 		};
-		735195A31C2D429900327BD3 /* Test2 */ = {
+		735195A31C2D429900327BD3 /* tableview（微博展示） */ = {
 			isa = PBXGroup;
 			children = (
-				735195751C2CF2FD00327BD3 /* Model test2 */,
-				73DA9ACF1C2BEE3500591CE9 /* View test2 */,
-				735195741C2CF2F500327BD3 /* Controller test2 */,
+				735195761C2CF33800327BD3 /* WeiboStatus.h */,
+				735195771C2CF33800327BD3 /* WeiboStatus.m */,
+				735195791C2CF65D00327BD3 /* StatusTableViewCell.h */,
+				7351957A1C2CF65D00327BD3 /* StatusTableViewCell.m */,
+				7351957C1C2D2B6500327BD3 /* StatusViewController.h */,
+				7351957D1C2D2B6500327BD3 /* StatusViewController.m */,
 			);
-			name = Test2;
+			name = "tableview（微博展示）";
 			sourceTree = "<group>";
 		};
 		73DA9AA41C2BE7A200591CE9 = {
@@ -194,10 +186,12 @@
 			children = (
 				73DA9AB31C2BE7A200591CE9 /* AppDelegate.h */,
 				73DA9AB41C2BE7A200591CE9 /* AppDelegate.m */,
-				735195A31C2D429900327BD3 /* Test2 */,
-				735195A21C2D427500327BD3 /* Test1 */,
-				7334AD041C30CDEF009DE444 /* Test3 */,
-				7334AD051C30F652009DE444 /* Test4 */,
+				7333131C1C658FA400D7A0A1 /* ViewController.h */,
+				7333131D1C658FA400D7A0A1 /* ViewController.m */,
+				735195A21C2D427500327BD3 /* tableView(通讯录展示：编辑和删除排序) */,
+				735195A31C2D429900327BD3 /* tableview（微博展示） */,
+				7334AD041C30CDEF009DE444 /* tableView（UISearchBar 搜索常用） */,
+				7334AD051C30F652009DE444 /* tableView（UISearchDisplayController 搜索） */,
 				735195831C2D2D8600327BD3 /* library */,
 				73DA9AB91C2BE7A200591CE9 /* Main.storyboard */,
 				73DA9ABC1C2BE7A200591CE9 /* Assets.xcassets */,
@@ -214,35 +208,6 @@
 				73DA9AB11C2BE7A200591CE9 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		73DA9ACD1C2BEE2500591CE9 /* Model test1 */ = {
-			isa = PBXGroup;
-			children = (
-				73DA9AD01C2BEE7800591CE9 /* TableContact.h */,
-				73DA9AD11C2BEE7800591CE9 /* TableContact.m */,
-				73DA9AD31C2BF13F00591CE9 /* TableContactGroup.h */,
-				73DA9AD41C2BF13F00591CE9 /* TableContactGroup.m */,
-			);
-			name = "Model test1";
-			sourceTree = "<group>";
-		};
-		73DA9ACE1C2BEE2D00591CE9 /* Controller test1 */ = {
-			isa = PBXGroup;
-			children = (
-				73DA9AD61C2BF8AF00591CE9 /* MainViewController.h */,
-				73DA9AD71C2BF8AF00591CE9 /* MainViewController.m */,
-			);
-			name = "Controller test1";
-			sourceTree = "<group>";
-		};
-		73DA9ACF1C2BEE3500591CE9 /* View test2 */ = {
-			isa = PBXGroup;
-			children = (
-				735195791C2CF65D00327BD3 /* StatusTableViewCell.h */,
-				7351957A1C2CF65D00327BD3 /* StatusTableViewCell.m */,
-			);
-			name = "View test2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,6 +302,7 @@
 				73DA9AD21C2BEE7800591CE9 /* TableContact.m in Sources */,
 				735195781C2CF33800327BD3 /* WeiboStatus.m in Sources */,
 				73DA9AD81C2BF8AF00591CE9 /* MainViewController.m in Sources */,
+				7333131E1C658FA400D7A0A1 /* ViewController.m in Sources */,
 				73DA9AB51C2BE7A200591CE9 /* AppDelegate.m in Sources */,
 				7351957E1C2D2B6500327BD3 /* StatusViewController.m in Sources */,
 				73DA9AB21C2BE7A200591CE9 /* main.m in Sources */,

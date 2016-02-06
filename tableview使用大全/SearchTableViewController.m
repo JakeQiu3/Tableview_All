@@ -62,7 +62,7 @@
 - (void)addSearchBar {
     _searchBar = [[UISearchBar alloc] init];
     [_searchBar sizeToFit];//大小自适应容器
-    _searchBar.placeholder = @"Please input key word...";
+    _searchBar.placeholder = @"Please input key word";
     _searchBar.showsCancelButton = YES;
     _searchBar.autocapitalizationType =UITextAutocapitalizationTypeNone;
     _searchBar.delegate = self;

@@ -7,10 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
-#import "StatusViewController.h"
-#import "ContactTableViewController.h"
-#import "SearchTableViewController.h"
+#import "ViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -20,20 +17,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor=[UIColor colorWithRed:249/255.0 green:249/255.0 blue:249/255.0 alpha:1];
-//   测试1： cell 的基本展示
-    MainViewController *mainController = [[MainViewController alloc] init];
- //   测试2 ：cell的微博展示和基本移动删除等
-//    StatusViewController *mainController=[[StatusViewController alloc]init];
-//    测试3 ：cell的搜索
-//    ContactTableViewController *mainController = [[ContactTableViewController alloc] init];
-//    测试4 ：cell的搜索2
-//    SearchTableViewController *mainController = [[SearchTableViewController alloc] init];
-    
-    self.window.rootViewController=mainController;
-    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:23/255.0 green:180/255.0 blue:237/255.0 alpha:1]];
+    [[UINavigationBar appearance]setBarStyle:UIBarStyleBlack];
+    ViewController *mainVC = [[ViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+
     return YES;
 }
 

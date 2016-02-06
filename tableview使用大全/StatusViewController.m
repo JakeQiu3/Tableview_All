@@ -74,7 +74,9 @@
 #pragma  mark delegate 
 // Cell内部设置多高都没有用，需要重新设置
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    获取到对应的cell
     StatusTableViewCell *statusCell = _statusCellsArray[indexPath.row];
+//   再次给cell赋值
     statusCell.weiboStatus = _dataArray[indexPath.row];
     return statusCell.height;
 }
@@ -84,19 +86,5 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
