@@ -29,11 +29,6 @@
     [super viewDidLoad];
     [self initData];
     [self addSearchBar];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)initData {
@@ -100,8 +95,9 @@
 
 -(NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     
-     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
     if (tableView == _searchDisplayController.searchResultsTableView) {
+        
         return tempArray;
     }
     for (TableContactGroup *tempGroup in _contactArray) {
