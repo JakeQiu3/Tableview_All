@@ -155,12 +155,12 @@
 		735195A31C2D429900327BD3 /* tableview（微博展示） */ = {
 			isa = PBXGroup;
 			children = (
+				7351957C1C2D2B6500327BD3 /* StatusViewController.h */,
+				7351957D1C2D2B6500327BD3 /* StatusViewController.m */,
 				735195761C2CF33800327BD3 /* WeiboStatus.h */,
 				735195771C2CF33800327BD3 /* WeiboStatus.m */,
 				735195791C2CF65D00327BD3 /* StatusTableViewCell.h */,
 				7351957A1C2CF65D00327BD3 /* StatusTableViewCell.m */,
-				7351957C1C2D2B6500327BD3 /* StatusViewController.h */,
-				7351957D1C2D2B6500327BD3 /* StatusViewController.m */,
 			);
 			name = "tableview（微博展示）";
 			sourceTree = "<group>";

@@ -68,6 +68,7 @@
     _textLabel.numberOfLines=0;
     [self.contentView addSubview:_textLabel];
 }
+
 //set方法，设置frame和赋值
 - (void)setWeiboStatus:(WeiboStatus *)weiboStatus {
     if (_weiboStatus != weiboStatus) {
