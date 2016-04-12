@@ -212,10 +212,103 @@
     
     
 }
+#warning 少 删除和添加的4步骤
+///*
+// * 删除方法:1.可编辑状态
+// */
+//- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+//    [super setEditing:editing animated:animated];
+//    [_tableView setEditing:editing animated:YES];
+//}
+////2、确定哪些行能够编辑：默认是yes
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return YES;
+//}
+////3、确定编辑样式
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (_isInsert) {
+//        return UITableViewCellEditingStyleInsert;//添加
+//    }
+//    return UITableViewCellEditingStyleDelete;//删除
+//    
+//}
+////四、提交编辑（不提交，无法使用侧滑来完成删除）:或者添加
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        //找到要删除的行所在的分组
+//        NSMutableArray *groupArray = [self.contactsDic objectForKey:[self.keyArray objectAtIndex:indexPath.section]];
+//        //判断组里是否只有1行,将整个分区删掉
+//        if ([groupArray count] == 1) {
+//            NSString *key = [self.keyArray objectAtIndex:indexPath.section];
+//            
+//            //1、删数据源
+//            [self.contactsDic removeObjectForKey:key];
+//            [self.keyArray removeObject:key];
+//            //2、删除分区
+//            [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+//    //   3.刷新视图
+//            [tableView reloadData];//整个视图都进行刷新
+//        } else {
+//            // 把当前cell对应的数据从数组中移除
+//            // 1、删除数据源
+//            [groupArray removeObjectAtIndex:indexPath.row];
+//            
+//            // 2、删除数据源对应的cell
+//            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+//        }
+//        // =======插入1行的方法 =======
+//       else if (editingStyle == UITableViewCellEditingStyleInsert){
+////        在点击的这1行的下面插入数据
+//                    [self.dataArray insertObject:@"23" atIndex:indexPath.row + 1];
+//                    //        第二步：刷新视图
+//                    [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationTop];
+//           
+//           
+//                }
+//    }
+//    
+//}
+#warning 少 --移动的3步骤--
+////第一步：让tableview能够编辑；
+//- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+//    [super setEditing:editing animated:animated];
+//    [_tableView setEditing:editing animated:YES];
+//}
+//
+////第二步：指定能够移动的行；
+//- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return YES;
+//}
+//
+////第三步：视图的移动完成；
+//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+//    //视图移动之后数据源的改变步骤：
+//    //1、找到cell所在的数组
+//    NSMutableArray *groupArray = [self.contactsDic objectForKey:[self.keyArray objectAtIndex:sourceIndexPath.section]];
+//    
+//    id object = [groupArray objectAtIndex:sourceIndexPath.row];
+//    //2、将对象添加到要移动的位置上面
+//    [groupArray insertObject:object atIndex:destinationIndexPath.row];
+//    //  [groupArray addObject:object] 不用该方法,位置是最后!
+//    //4、将对象从数组中移除
+//    [groupArray removeObjectAtIndex:sourceIndexPath.row];
+//    //   5、刷新数据源
+//    [tableView reloadData];
+//    
+//}
+//
+////不让tableView跨区域移动
+//- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+//    //如果对象的原始位置和临时位置在同一个分区中，就可以让他移动；
+//    if (sourceIndexPath.section == proposedDestinationIndexPath.section) {
+//        return proposedDestinationIndexPath;
+//    }
+//    //如果不在同一个分区中，让对象回到原来的位置上；
+//    return sourceIndexPath;
+//}
 
-/*
- * 删除方法:可编辑状态
- */
+//删除cell的方法
+
 - (void)remove:(UIBarButtonItem *)btnItem {
     _isInsert = NO;
     [_tableView setEditing:!_tableView.isEditing animated:YES];
