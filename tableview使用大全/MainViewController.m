@@ -65,6 +65,7 @@
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.allowsMultipleSelectionDuringEditing = YES;// 允许在编辑模式进行多选操作
     [self.view addSubview:_tableView];
 }
 #pragma mark dataSource
@@ -213,6 +214,29 @@
     
 }
 #warning 少 删除和添加的4步骤
+// 多行删除的方法
+//1.    // 允许在编辑模式进行多选操作
+//self.tableView.allowsMultipleSelectionDuringEditing = YES;
+//2.  点击批量删除实行编辑按钮执行方法
+- (void)multiOperation:(id)sender {
+    [_tableView setEditing:!_tableView.isEditing animated:YES];
+}
+//3.删除按钮
+- (void)deleteMutile:(id)sender{
+    // 获得所有被选中的行indextPath
+    NSArray *indextPaths = [_tableView indexPathsForSelectedRows];
+//    NSArray *indexPahts = [_tableView indexPathsForVisibleRows];//获取所有能看到的行数
+     // 遍历所有的行号，得到所有的删除的数据模型。
+    NSMutableArray *deletedArray =  [NSMutableArray array];
+    for (NSIndexPath *path in indextPaths) {
+        [deletedArray addObject:_contactsArray[path.row]];
+    }
+//   删除模型中的数据数组
+    [_contactsArray removeObjectsInArray:deletedArray];
+//    刷新表哥
+    [_tableView reloadData];
+    
+}
 ///*
 // * 删除方法:1.可编辑状态
 // */
