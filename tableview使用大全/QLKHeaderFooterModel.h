@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HeaderFooterModel : NSObject
+@interface QLKHeaderFooterModel : NSObject
 @property (nonatomic,copy) NSString *question; //问题的str
-- (HeaderFooterModel *)initWithDic:(NSDictionary *)dic;
-+ (HeaderFooterModel *)initWithDic:(NSDictionary *)dic;
+- (QLKHeaderFooterModel *)initWithDic:(NSDictionary *)dic;
++ (QLKHeaderFooterModel *)initWithDic:(NSDictionary *)dic;
 @end

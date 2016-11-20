@@ -11,7 +11,7 @@
 #import "WeiboStatus.h"
 
 #import "QLKInfoTableViewHeaderFooterView.h"
-#import "HeaderFooterModel.h"
+#import "QLKHeaderFooterModel.h"
 
 @interface StatusViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -54,7 +54,7 @@
         
         
         // 转区头view的数据字典为模型
-        HeaderFooterModel *headerModel = [HeaderFooterModel initWithDic:obj];
+        QLKHeaderFooterModel *headerModel = [QLKHeaderFooterModel initWithDic:obj];
         [headerArray addObject:headerModel];
         
         //将区头view添加到数组中
@@ -110,10 +110,10 @@
 
 #pragma mark 动态设置section header height
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    static NSString *infoTableViewHeaderFooterView = @"InfoTableViewHeaderFooterView";
-    QLKInfoTableViewHeaderFooterView *infoTableViewHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:infoTableViewHeaderFooterView];
+    static NSString *InfoTableViewHeaderView = @"InfoTableViewHeaderView";
+    QLKInfoTableViewHeaderFooterView *infoTableViewHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:InfoTableViewHeaderView];
     if (!infoTableViewHeaderView) {
-        infoTableViewHeaderView = [[QLKInfoTableViewHeaderFooterView alloc] initWithReuseIdentifier:infoTableViewHeaderFooterView];
+        infoTableViewHeaderView = [[QLKInfoTableViewHeaderFooterView alloc] initWithReuseIdentifier:InfoTableViewHeaderView];
     }
     infoTableViewHeaderView.numLabel.text = [NSString stringWithFormat:@"%d.",(section+1)];
     infoTableViewHeaderView.headerModel = [headerArray objectAtIndex:section];
@@ -129,9 +129,24 @@
     return headerView.height;
 }
 
-#pragma mark 动态设置section header height
+#pragma mark 动态设置section footerview height
 - (CGFloat )tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    //    获取到对应的headerView
+    QLKInfoTableViewHeaderFooterView *headerView = _headerFootersViewArray[section];
+    //   再次给cell赋值
+    headerView.headerModel = headerArray[section];
+    return headerView.height;
     return CGFLOAT_MIN;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    static NSString *InfoTableViewFooterView = @"InfoTableViewFooterView";
+    QLKInfoTableViewHeaderFooterView *infoTableViewHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:InfoTableViewFooterView];
+    if (!infoTableViewHeaderView) {
+        infoTableViewHeaderView = [[QLKInfoTableViewHeaderFooterView alloc] initWithReuseIdentifier:InfoTableViewFooterView];
+    }
+    infoTableViewHeaderView.numLabel.text = [NSString stringWithFormat:@"%d.",(section+1)];
+    infoTableViewHeaderView.headerModel = [headerArray objectAtIndex:section];
+    return infoTableViewHeaderView;
+}
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "QLKInfoTableViewHeaderFooterView.h"
-#import "HeaderFooterModel.h"
+#import "QLKHeaderFooterModel.h"
 #define kMargin 10
 @interface   QLKInfoTableViewHeaderFooterView()
 @end
@@ -23,6 +23,7 @@
 - (void)initSubviews {
     // 创建num序号
     _numLabel = [[UILabel alloc] init];
+    _numLabel.textColor = [UIColor redColor];
     _numLabel.font = [UIFont systemFontOfSize:16];
     [self.contentView addSubview:_numLabel];
     // 创建问题序号
@@ -34,7 +35,7 @@
     [self.contentView addSubview:_questionLabel];
 }
 
-- (void)setHeaderModel:(HeaderFooterModel *)headerModel {
+- (void)setHeaderModel:(QLKHeaderFooterModel *)headerModel {
     _headerModel = headerModel;
     if (_headerModel) {
         _numLabel.frame = CGRectMake(kMargin, kMargin, 20, 20);

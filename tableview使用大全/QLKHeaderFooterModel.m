@@ -6,10 +6,10 @@
 //  Copyright © 2016年 QSY. All rights reserved.
 //
 
-#import "HeaderFooterModel.h"
+#import "QLKHeaderFooterModel.h"
 
-@implementation HeaderFooterModel
-- (HeaderFooterModel *)initWithDic:(NSDictionary *)dic {
+@implementation QLKHeaderFooterModel
+- (QLKHeaderFooterModel *)initWithDic:(NSDictionary *)dic {
     self = [super init];
     if (self) {
         self.question = dic[@"text"];
@@ -17,8 +17,8 @@
     return self;
 }
 
-+ (HeaderFooterModel *)initWithDic:(NSDictionary *)dic {
-    HeaderFooterModel *headerFooterModel = [[HeaderFooterModel alloc] initWithDic:dic];
++ (QLKHeaderFooterModel *)initWithDic:(NSDictionary *)dic {
+    QLKHeaderFooterModel *headerFooterModel = [[QLKHeaderFooterModel alloc] initWithDic:dic];
     return headerFooterModel;
 }
 
