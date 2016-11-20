@@ -123,7 +123,7 @@
     CGFloat textX=avatarX;
     CGFloat textY=CGRectGetMaxY(_avatarImageView.frame)+kStatusTableViewCellSpacing;
     CGFloat textWidth=self.frame.size.width-kStatusTableViewCellSpacing*2;
-//   计算当行文本的尺寸
+//   计算多行文本的尺寸
     CGSize textSize = [_weiboStatus.text boundingRectWithSize:CGSizeMake(textWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:kStatusTableViewCellTextFontSize]} context:nil].size;
     
     CGRect textRect=CGRectMake(textX, textY, textSize.width, textSize.height);

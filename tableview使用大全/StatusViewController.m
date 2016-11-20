@@ -9,12 +9,16 @@
 #import "StatusViewController.h"
 #import "StatusTableViewCell.h"
 #import "WeiboStatus.h"
+#import "QLKInfoTableViewHeaderFooterView.h"
+
+static NSString * const infoTableViewHeaderFooterView = @"InfoTableViewHeaderFooterView";
+
 @interface StatusViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
     NSMutableArray *_dataArray;
     NSMutableArray *_statusCellsArray; //存储cell，用于计算高度
-    
+    NSMutableArray *headerViewArray;//区头数据
 }
 
 @end
@@ -25,6 +29,8 @@
     [super viewDidLoad];
     [self initData];
     [self setUI];
+    
+
     // Do any additional setup after loading the view.
 }
 
@@ -33,9 +39,9 @@
     NSArray *array = [NSArray arrayWithContentsOfFile:filePath];
     _dataArray = [[NSMutableArray alloc] init];
     _statusCellsArray = [[NSMutableArray alloc] init];
-
+    headerViewArray = @[].mutableCopy;
     [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
+        [headerViewArray addObject:[obj objectForKey:@"text"]];// 获取区头数据
         WeiboStatus *statusModel = [WeiboStatus initWithDic:obj];
         [_dataArray addObject:statusModel];
 //       把cell放进数组中。
@@ -51,14 +57,16 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
+    [_tableView registerClass:[QLKInfoTableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:infoTableViewHeaderFooterView];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return _dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _dataArray.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,7 +75,7 @@
     if (!cell) {
         cell = [[StatusTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfiner];
     }
-    WeiboStatus *status = _dataArray[indexPath.row];
+    WeiboStatus *status = _dataArray[indexPath.section];
     cell.weiboStatus = status;
     return cell;
 }
@@ -75,9 +83,9 @@
 // Cell内部设置多高都没有用，需要重新设置
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    获取到对应的cell
-    StatusTableViewCell *statusCell = _statusCellsArray[indexPath.row];
+    StatusTableViewCell *statusCell = _statusCellsArray[indexPath.section];
 //   再次给cell赋值
-    statusCell.weiboStatus = _dataArray[indexPath.row];
+    statusCell.weiboStatus = _dataArray[indexPath.section];
     return statusCell.height;
 }
 
@@ -86,5 +94,15 @@
     return UIStatusBarStyleLightContent;
 }
 
+#pragma mark 设置区头
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    QLKInfoTableViewHeaderFooterView *infoTableViewHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:infoTableViewHeaderFooterView];
+    return infoTableViewHeaderView;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 100;
+}
 
 @end
