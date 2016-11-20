@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		30920BC21DE0A19B00371D15 /* QLKInfoTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30920BC11DE0A19B00371D15 /* QLKInfoTableViewHeaderFooterView.m */; };
 		30BC99EA1DE151F2004F1171 /* QLKHeaderFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BC99E91DE151F2004F1171 /* QLKHeaderFooterModel.m */; };
+		30FE70471DE1F49800475295 /* XibTablleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FE70461DE1F49800475295 /* XibTablleViewController.m */; };
+		30FE704A1DE1F4AD00475295 /* TextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FE70491DE1F4AD00475295 /* TextModel.m */; };
+		30FE704E1DE1F4CA00475295 /* TableViewXibCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FE704C1DE1F4CA00475295 /* TableViewXibCell.m */; };
+		30FE704F1DE1F4CA00475295 /* TableViewXibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30FE704D1DE1F4CA00475295 /* TableViewXibCell.xib */; };
 		7333131E1C658FA400D7A0A1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7333131D1C658FA400D7A0A1 /* ViewController.m */; };
 		7334AD081C30F678009DE444 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7334AD071C30F678009DE444 /* SearchTableViewController.m */; };
 		735195781C2CF33800327BD3 /* WeiboStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 735195771C2CF33800327BD3 /* WeiboStatus.m */; };
@@ -47,6 +51,13 @@
 		30920BC11DE0A19B00371D15 /* QLKInfoTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLKInfoTableViewHeaderFooterView.m; sourceTree = "<group>"; };
 		30BC99E81DE151F2004F1171 /* QLKHeaderFooterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLKHeaderFooterModel.h; sourceTree = "<group>"; };
 		30BC99E91DE151F2004F1171 /* QLKHeaderFooterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLKHeaderFooterModel.m; sourceTree = "<group>"; };
+		30FE70451DE1F49800475295 /* XibTablleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XibTablleViewController.h; sourceTree = "<group>"; };
+		30FE70461DE1F49800475295 /* XibTablleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XibTablleViewController.m; sourceTree = "<group>"; };
+		30FE70481DE1F4AD00475295 /* TextModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextModel.h; sourceTree = "<group>"; };
+		30FE70491DE1F4AD00475295 /* TextModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextModel.m; sourceTree = "<group>"; };
+		30FE704B1DE1F4CA00475295 /* TableViewXibCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewXibCell.h; sourceTree = "<group>"; };
+		30FE704C1DE1F4CA00475295 /* TableViewXibCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewXibCell.m; sourceTree = "<group>"; };
+		30FE704D1DE1F4CA00475295 /* TableViewXibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewXibCell.xib; sourceTree = "<group>"; };
 		7333131C1C658FA400D7A0A1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		7333131D1C658FA400D7A0A1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7334AD061C30F678009DE444 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
@@ -110,6 +121,20 @@
 				7334AD051C30F652009DE444 /* tableView（UISearchDisplayController 搜索） */,
 			);
 			name = "集成搜索框的tableview";
+			sourceTree = "<group>";
+		};
+		30FE70441DE1F46900475295 /* xib约束的tableview */ = {
+			isa = PBXGroup;
+			children = (
+				30FE70451DE1F49800475295 /* XibTablleViewController.h */,
+				30FE70461DE1F49800475295 /* XibTablleViewController.m */,
+				30FE70481DE1F4AD00475295 /* TextModel.h */,
+				30FE70491DE1F4AD00475295 /* TextModel.m */,
+				30FE704B1DE1F4CA00475295 /* TableViewXibCell.h */,
+				30FE704C1DE1F4CA00475295 /* TableViewXibCell.m */,
+				30FE704D1DE1F4CA00475295 /* TableViewXibCell.xib */,
+			);
+			name = "xib约束的tableview";
 			sourceTree = "<group>";
 		};
 		7334AD041C30CDEF009DE444 /* tableView（UISearchBar 搜索常用） */ = {
@@ -207,13 +232,14 @@
 				73DA9AB41C2BE7A200591CE9 /* AppDelegate.m */,
 				7333131C1C658FA400D7A0A1 /* ViewController.h */,
 				7333131D1C658FA400D7A0A1 /* ViewController.m */,
+				30FE70441DE1F46900475295 /* xib约束的tableview */,
 				735195A21C2D427500327BD3 /* tableView(通讯录：编辑、删除和排序等) */,
 				735195A31C2D429900327BD3 /* tableview（字典转模型、动态计算cell和区头区尾高度:复用） */,
-				735195831C2D2D8600327BD3 /* library */,
-				73DA9AB91C2BE7A200591CE9 /* Main.storyboard */,
 				30BC99EB1DE1CC4A004F1171 /* 集成搜索框的tableview */,
-				73DA9ABC1C2BE7A200591CE9 /* Assets.xcassets */,
+				735195831C2D2D8600327BD3 /* library */,
 				73DA9ABE1C2BE7A200591CE9 /* LaunchScreen.storyboard */,
+				73DA9AB91C2BE7A200591CE9 /* Main.storyboard */,
+				73DA9ABC1C2BE7A200591CE9 /* Assets.xcassets */,
 				73DA9AC11C2BE7A200591CE9 /* Info.plist */,
 				73DA9AB01C2BE7A200591CE9 /* Supporting Files */,
 			);
@@ -305,6 +331,7 @@
 				735195961C2D2D9D00327BD3 /* 4.jpg in Resources */,
 				73DA9ABB1C2BE7A200591CE9 /* Main.storyboard in Resources */,
 				735195951C2D2D9D00327BD3 /* 3.jpg in Resources */,
+				30FE704F1DE1F4CA00475295 /* TableViewXibCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +345,7 @@
 				73DA9AD51C2BF13F00591CE9 /* TableContactGroup.m in Sources */,
 				73DA9ACC1C2BEDD200591CE9 /* ContactTableViewController.m in Sources */,
 				73DA9AD21C2BEE7800591CE9 /* TableContact.m in Sources */,
+				30FE704E1DE1F4CA00475295 /* TableViewXibCell.m in Sources */,
 				30920BC21DE0A19B00371D15 /* QLKInfoTableViewHeaderFooterView.m in Sources */,
 				735195781C2CF33800327BD3 /* WeiboStatus.m in Sources */,
 				73DA9AD81C2BF8AF00591CE9 /* MainViewController.m in Sources */,
@@ -325,8 +353,10 @@
 				30BC99EA1DE151F2004F1171 /* QLKHeaderFooterModel.m in Sources */,
 				73DA9AB51C2BE7A200591CE9 /* AppDelegate.m in Sources */,
 				7351957E1C2D2B6500327BD3 /* StatusViewController.m in Sources */,
+				30FE70471DE1F49800475295 /* XibTablleViewController.m in Sources */,
 				73DA9AB21C2BE7A200591CE9 /* main.m in Sources */,
 				7351957B1C2CF65D00327BD3 /* StatusTableViewCell.m in Sources */,
+				30FE704A1DE1F4AD00475295 /* TextModel.m in Sources */,
 				7334AD081C30F678009DE444 /* SearchTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

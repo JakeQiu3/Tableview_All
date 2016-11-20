@@ -34,8 +34,8 @@
 }
 
 - (void)initData {
-    _dataArray = [[NSArray alloc] initWithObjects:@"tableView(通讯录展示：编辑和删除排序)",@"tableview（微博展示）",@"tableView（UISearchBar 搜索常用）",@"tableView（UISearchDisplayController 搜索）", nil];
-    _classArray = [[NSArray alloc] initWithObjects:@"MainViewController",@"StatusViewController",@"ContactTableViewController",@"SearchTableViewController", nil];
+    _dataArray = [[NSArray alloc] initWithObjects:@"tableView(通讯录展示：编辑和删除排序)",@"tableview（微博展示:各种复用和自适应高度）",@"tableview(xib版本自适应高度)",@"tableView（UISearchBar 搜索常用）",@"tableView（UISearchDisplayController 搜索）", nil];
+    _classArray = [[NSArray alloc] initWithObjects:@"MainViewController",@"StatusViewController",@"XibTablleViewController",@"ContactTableViewController",@"SearchTableViewController", nil];
 }
 
 - (void)setUI {
