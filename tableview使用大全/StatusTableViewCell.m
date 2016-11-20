@@ -136,6 +136,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
 }
 
 //重写选择事件，取消选中

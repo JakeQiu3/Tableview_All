@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class HeaderFooterModel;
 @interface QLKInfoTableViewHeaderFooterView : UITableViewHeaderFooterView
 @property (nonatomic, strong) UILabel *questionLabel;
 @property (nonatomic, strong)UILabel *numLabel;
+
+@property (nonatomic, strong)HeaderFooterModel *headerModel;
+@property (nonatomic, assign)CGFloat height;
+
 @end
