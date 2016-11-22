@@ -52,7 +52,7 @@
         _questionLabel.frame = CGRectMake(CGRectGetMaxX(_numLabel.frame), kMargin,quesTextSize.width, quesTextSize.height);
 //        [_questionLabel sizeToFit];
 
-        self.height = CGRectGetMaxY(_questionLabel.frame) + kMargin;
+        self.height = CGRectGetMaxY(_questionLabel.frame) + 2*kMargin;// 计算高度时还是不够，需要增加了20的高度。
     }
 }
 @end

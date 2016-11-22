@@ -115,7 +115,7 @@
     if (!infoTableViewHeaderView) {
         infoTableViewHeaderView = [[QLKInfoTableViewHeaderFooterView alloc] initWithReuseIdentifier:InfoTableViewHeaderView];
     }
-    infoTableViewHeaderView.numLabel.text = [NSString stringWithFormat:@"%d.",(section+1)];
+    infoTableViewHeaderView.numLabel.text = [NSString stringWithFormat:@"区头%d.",(section+1)];
     infoTableViewHeaderView.headerModel = [headerArray objectAtIndex:section];
     return infoTableViewHeaderView;
 }
@@ -136,7 +136,7 @@
     //   再次给cell赋值
     headerView.headerModel = headerArray[section];
     return headerView.height;
-    return CGFLOAT_MIN;
+//    return CGFLOAT_MIN;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -145,7 +145,7 @@
     if (!infoTableViewHeaderView) {
         infoTableViewHeaderView = [[QLKInfoTableViewHeaderFooterView alloc] initWithReuseIdentifier:InfoTableViewFooterView];
     }
-    infoTableViewHeaderView.numLabel.text = [NSString stringWithFormat:@"%d.",(section+1)];
+    infoTableViewHeaderView.numLabel.text = [NSString stringWithFormat:@"区尾%d.",(section+1)];
     infoTableViewHeaderView.headerModel = [headerArray objectAtIndex:section];
     return infoTableViewHeaderView;
 }
