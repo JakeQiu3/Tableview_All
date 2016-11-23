@@ -20,6 +20,15 @@
     return self;
 }
 
+// 适配4和4s这样的机型,初始化方法调用
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self initSubviews];
+    }
+    return self;
+}
+
 - (void)initSubviews {
     // 创建num序号
     _numLabel = [[UILabel alloc] init];

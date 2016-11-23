@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface QLKHeaderFooterModel : NSObject
-@property (nonatomic,copy) NSString *question; //问题的str
+@property (nonatomic,copy) NSString *question; //问题
 - (QLKHeaderFooterModel *)initWithDic:(NSDictionary *)dic;
 + (QLKHeaderFooterModel *)initWithDic:(NSDictionary *)dic;
 @end
