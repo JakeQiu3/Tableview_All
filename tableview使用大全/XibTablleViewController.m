@@ -106,7 +106,7 @@ static NSString *const qsyCellIdentifier = @"AutoCellIdentifier";
     AutoCell *cell = [tableView dequeueReusableCellWithIdentifier:qsyCellIdentifier];
     // 配置cell
     NSDictionary *dict = _dataSource[indexPath.row];
-//    [cell.itemImageView sd_setImageWithURL:[NSURL URLWithString:dict[@"image"]] placeholderImage:[UIImage imageNamed:@""]];
+   // [cell.itemImageView sd_setImageWithURL:[NSURL URLWithString:dict[@"image"]] placeholderImage:[UIImage imageNamed:@""]];
     [cell.itemImageView sd_setImageWithURL:[NSURL URLWithString:dict[@"image"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
     }];
