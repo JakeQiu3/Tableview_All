@@ -92,6 +92,8 @@
     StatusTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfiner];
     if (!cell) {
         cell = [[StatusTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfiner];
+#warning 曾经踩过的坑：cell 的init过程中切勿涉及到indexpath，因为创建只执行了visible cells，其他的cells不走复用。
+        
     }
     WeiboStatus *status = _dataArray[indexPath.section];
     cell.weiboStatus = status;
