@@ -117,7 +117,7 @@
     if (!infoTableViewHeaderView) {
         infoTableViewHeaderView = [[QLKInfoTableViewHeaderFooterView alloc] initWithReuseIdentifier:InfoTableViewHeaderView];
     }
-    infoTableViewHeaderView.numLabel.text = [NSString stringWithFormat:@"区头%d.",(section+1)];
+    infoTableViewHeaderView.numLabel.text = [NSString stringWithFormat:@"区头%ld.",(section+1)];
     infoTableViewHeaderView.headerModel = [headerArray objectAtIndex:section];
     return infoTableViewHeaderView;
 }
