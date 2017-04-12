@@ -278,7 +278,13 @@
 //            [groupArray removeObjectAtIndex:indexPath.row];
 //            
 //            // 2、删除数据源对应的cell
-//            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+//           if (groupArray.count == 0) {
+//[tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+//} else {
+//    // 2、删除数据源对应的cell
+//    [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section]]withRowAnimation:UITableViewRowAnimationLeft];
+//}
+
 //        }
 //        // =======插入1行的方法 =======
 //       else if (editingStyle == UITableViewCellEditingStyleInsert){
