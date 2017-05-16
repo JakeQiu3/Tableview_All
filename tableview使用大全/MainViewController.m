@@ -32,8 +32,8 @@
 
 - (void)initData {
     _contactsArray = [[NSMutableArray alloc] init];
-// 控件内容 == init的参数（模型化）
-//    让程序定位到出错代码行：view->navigators->Show the Breakpoint  navigator—> Add Exception breakpoint。
+    // 控件内容 == init的参数（模型化）
+    //    让程序定位到出错代码行：view->navigators->Show the Breakpoint  navigator—> Add Exception breakpoint。
     TableContact *contact1 = [[TableContact alloc]initWithFirstName:@"cui" lastName:@"hha" phoneNumber:@"13788774362"];
     TableContact *contact2 = [[TableContact alloc]initWithFirstName:@"cui" lastName:@"hhjoeiuga" phoneNumber:@"1374362"];
     TableContact *contact3 = [[TableContact alloc]initWithFirstName:@"cui" lastName:@"gsdsg" phoneNumber:@"137884774362"];
@@ -48,7 +48,7 @@
     TableContact *contact6 = [[TableContact alloc]initWithFirstName:@"liu" lastName:@"hhdfa" phoneNumber:@"13788774362"];
     TableContact *contact7 = [[TableContact alloc]initWithFirstName:@"liu" lastName:@"huga" phoneNumber:@"1374362"];
     TableContact *contact8 = [[TableContact alloc]initWithFirstName:@"liu" lastName:@"gsg" phoneNumber:@"137884774362"];
-      TableContact *contact9 = [[TableContact alloc]initWithFirstName:@"liu" lastName:@"erdsg" phoneNumber:@"137884774362"];
+    TableContact *contact9 = [[TableContact alloc]initWithFirstName:@"liu" lastName:@"erdsg" phoneNumber:@"137884774362"];
     TableContactGroup *group3 = [[TableContactGroup alloc] initWithGroupName:@"L" groupDetail:@"With names beginning with L" contacts:[NSMutableArray arrayWithObjects:contact6,contact7,contact8,contact9,nil]];
     [_contactsArray addObject:group3];
     
@@ -87,22 +87,22 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    2种cell：2个标示
+    //    2种cell：2个标示
     static NSString *indentfifer = @"woout";
     static NSString *switchIndentifer = @"switchIdentifier";
-//    缓存池取cell
+    //    缓存池取cell
     UITableViewCell *cell;
     if (0 == indexPath.row) {
         cell = [tableView dequeueReusableCellWithIdentifier:switchIndentifer];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:indentfifer];
     }
-//创建cell
+    //创建cell
     if (!cell) {
         if (0 == indexPath.row) {
             cell = [[UITableViewCell  alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:switchIndentifer];
             UISwitch *switchView= [[UISwitch alloc]init];
-//            设置tag:获取对应indexPath,再获取cell
+            //            设置tag:获取对应indexPath,再获取cell
             switchView.tag = indexPath.section +100;
             [switchView addTarget:self action:@selector(switchValueChange:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = switchView;
@@ -127,7 +127,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     TableContactGroup *tempGroup = _contactsArray[section];
     return tempGroup.groupDetail;
-
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -137,9 +137,9 @@
     TableContact *tempContact = tempGroup.contacts[indexPath.row];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[tempContact getName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-//  给alert创建一个textfield
+    //  给alert创建一个textfield
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-// 取得文本框
+    // 取得文本框
     UITextField *textField= [alert textFieldAtIndex:0];
     textField.text=tempContact.phoneNumber; //设置文本框内容
     [alert show]; //显示窗口
@@ -152,15 +152,15 @@
         TableContactGroup *tempGroup = _contactsArray[_selcetedIndex.section];
         TableContact *tempContact = tempGroup.contacts[_selcetedIndex.row];
         tempContact.phoneNumber = textField.text;
-//        // 全部刷新
-//        [_tableView reloadData];
+        //        // 全部刷新
+        //        [_tableView reloadData];
         //局部刷新表格
         NSArray *indexPathArray=@[_selcetedIndex];//需要局部刷新的单元格的组、行
         [_tableView reloadRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationAutomatic];//后面的参数代表更新时的动画
     }
 }
 
-#pragma mark delegate 
+#pragma mark delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (0 == section) {
         return 100;
@@ -190,7 +190,7 @@
 - (void)switchValueChange:(UISwitch *)switchView {
     NSInteger section = switchView.tag - 100;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
-//    获取到点击的cell
+    //    获取到点击的cell
     UITableViewCell *cell;
     cell = (UITableViewCell *)[_tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"%p====切换按钮",cell);
@@ -201,11 +201,11 @@
     
     _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width,64)];
     [self.view addSubview:_toolBar];
-//   删除按钮
+    //   删除按钮
     UIBarButtonItem *removeBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(remove:)];
-//    
+    //
     UIBarButtonItem *flexibleBtn=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-//    添加按钮
+    //    添加按钮
     UIBarButtonItem *addBtn=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
     
     NSArray *buttonArray=[NSArray arrayWithObjects:removeBtn,flexibleBtn,addBtn, nil];
@@ -225,15 +225,15 @@
 - (void)deleteMutile:(id)sender{
     // 获得所有被选中的行indextPath
     NSArray *indextPaths = [_tableView indexPathsForSelectedRows];
-//    NSArray *indexPahts = [_tableView indexPathsForVisibleRows];//获取所有能看到的行数
-     // 遍历所有的行号，得到所有的删除的数据模型。
+    //    NSArray *indexPahts = [_tableView indexPathsForVisibleRows];//获取所有能看到的行数
+    // 遍历所有的行号，得到所有的删除的数据模型。
     NSMutableArray *deletedArray =  [NSMutableArray array];
     for (NSIndexPath *path in indextPaths) {
         [deletedArray addObject:_contactsArray[path.row]];
     }
-//   删除模型中的数据数组
+    //   删除模型中的数据数组
     [_contactsArray removeObjectsInArray:deletedArray];
-//    刷新表哥
+    //    刷新表哥
     [_tableView reloadData];
     
 }
@@ -254,7 +254,7 @@
 //        return UITableViewCellEditingStyleInsert;//添加
 //    }
 //    return UITableViewCellEditingStyleDelete;//删除
-//    
+//
 //}
 ////四、提交编辑（不提交，无法使用侧滑来完成删除）:或者添加
 //- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -264,7 +264,7 @@
 //        //判断组里是否只有1行,将整个分区删掉
 //        if ([groupArray count] == 1) {
 //            NSString *key = [self.keyArray objectAtIndex:indexPath.section];
-//            
+//
 //            //1、删数据源
 //            [self.contactsDic removeObjectForKey:key];
 //            [self.keyArray removeObject:key];
@@ -276,13 +276,14 @@
 //            // 把当前cell对应的数据从数组中移除
 //            // 1、删除数据源
 //            [groupArray removeObjectAtIndex:indexPath.row];
-//            
+//
 //            // 2、删除数据源对应的cell
 //           if (groupArray.count == 0) {
 //[tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
 //} else {
 //    // 2、删除数据源对应的cell
 //    [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section]]withRowAnimation:UITableViewRowAnimationLeft];
+// [tableView reloadData];//整个视图都进行刷新
 //}
 
 //        }
@@ -292,11 +293,11 @@
 //                    [self.dataArray insertObject:@"23" atIndex:indexPath.row + 1];
 //                    //        第二步：刷新视图
 //                    [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationTop];
-//           
-//           
+//
+//
 //                }
 //    }
-//    
+//
 //}
 #warning 少 --移动的3步骤--
 ////第一步：让tableview能够编辑；
@@ -315,7 +316,7 @@
 //    //视图移动之后数据源的改变步骤：
 //    //1、找到cell所在的数组
 //    NSMutableArray *groupArray = [self.contactsDic objectForKey:[self.keyArray objectAtIndex:sourceIndexPath.section]];
-//    
+//
 //    id object = [groupArray objectAtIndex:sourceIndexPath.row];
 //    //2、将对象添加到要移动的位置上面
 //    [groupArray insertObject:object atIndex:destinationIndexPath.row];
@@ -324,7 +325,7 @@
 //    [groupArray removeObjectAtIndex:sourceIndexPath.row];
 //    //   5、刷新数据源
 //    [tableView reloadData];
-//    
+//
 //}
 //
 ////不让tableView跨区域移动
@@ -366,7 +367,7 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [tempGroup.contacts removeObject:tableContact];
-//        局部刷新数据 delete
+        //        局部刷新数据 delete
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
         //如果当前组中已经没有数据则移除组刷新整个表格
         if (tempGroup.contacts.count == 0) {
@@ -382,7 +383,7 @@
         //            局部刷新 insert
         [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
     }
-
+    
 }
 
 
@@ -396,7 +397,7 @@
         [_contactsArray removeObject:tempGroup];
         [tableView reloadData];
     }
-     TableContactGroup *destinationGroup = _contactsArray[destinationIndexPath.section];
+    TableContactGroup *destinationGroup = _contactsArray[destinationIndexPath.section];
     [destinationGroup.contacts insertObject:tempContact atIndex:destinationIndexPath.row];
 }
 
